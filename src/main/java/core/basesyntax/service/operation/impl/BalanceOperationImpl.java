@@ -5,6 +5,14 @@ import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.operation.OperationType;
 
 public class BalanceOperationImpl implements OperationType {
+    private Storage storage;
+
+    public BalanceOperationImpl(Storage storage) {
+        if (storage == null) {
+            throw new RuntimeException("storage can not be null");
+        }
+        this.storage = storage;
+    }
 
     @Override
     public void handle(String line) {
@@ -13,7 +21,7 @@ public class BalanceOperationImpl implements OperationType {
         String fruitName = splitLine[1];
         String fruitQuantity = splitLine[2];
 
-        if (Storage.storage.containsKey(fruitName)) {
+        if (storage.containsValue(fruitName)) {
             throw new RuntimeException("fruit already exist");
         }
 
@@ -21,6 +29,6 @@ public class BalanceOperationImpl implements OperationType {
         fruitTransaction.setFruit(fruitName);
         fruitTransaction.setQuantity(Integer.parseInt(fruitQuantity));
 
-        Storage.storage.put(fruitName, fruitTransaction);
+        storage.add(fruitName, fruitTransaction);
     }
 }

@@ -1,5 +1,6 @@
 package core.basesyntax.service;
 
+import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.converting.DataConverter;
 import core.basesyntax.service.converting.DataConverterImpl;
@@ -19,11 +20,11 @@ public class ShopServiceImpl implements ShopService {
     private ReportGenerator reportGenerator;
 
     public ShopServiceImpl(Map<FruitTransaction.Operation, OperationType> map,
-                           String inputDataFileName) {
+                           String inputDataFileName, Storage storage) {
         this.strategy = new OperationStrategyImpl(map);
         this.inputDataFileName = inputDataFileName;
         this.converter = new DataConverterImpl();
-        this.reportGenerator = new ReportGeneratorImpl();
+        this.reportGenerator = new ReportGeneratorImpl(storage);
         this.reportFileName = "src/main/resources/report.csv";
     }
 
