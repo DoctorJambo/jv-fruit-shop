@@ -1,7 +1,5 @@
 package core.basesyntax;
 
-import core.basesyntax.dao.FruitTransactionDao;
-import core.basesyntax.dao.FruitTransactionDaoImpl;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.ShopService;
 import core.basesyntax.service.ShopServiceImpl;
@@ -13,19 +11,18 @@ import core.basesyntax.service.operation.impl.SupplyOperationImpl;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HelloWorld {
+public class Main {
     public static void main(String[] args) {
-        FruitTransactionDao fruitTransaction = new FruitTransactionDaoImpl();
 
         Map<FruitTransaction.Operation, OperationType> operationHandlers = new HashMap<>();
         operationHandlers.put(FruitTransaction.Operation.BALANCE,
-                new BalanceOperationImpl(fruitTransaction));
+                new BalanceOperationImpl());
         operationHandlers.put(FruitTransaction.Operation.PURCHASE,
-                new PurchaseOperationImpl(fruitTransaction));
+                new PurchaseOperationImpl());
         operationHandlers.put(FruitTransaction.Operation.RETURN,
-                new ReturnOperationImpl(fruitTransaction));
+                new ReturnOperationImpl());
         operationHandlers.put(FruitTransaction.Operation.SUPPLY,
-                new SupplyOperationImpl(fruitTransaction));
+                new SupplyOperationImpl());
 
         ShopService service = new ShopServiceImpl(operationHandlers,
                 "src/main/resources/inputData.csv");

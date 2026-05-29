@@ -1,15 +1,10 @@
 package core.basesyntax.service.operation.impl;
 
-import core.basesyntax.dao.FruitTransactionDao;
+import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.operation.OperationType;
 
 public class BalanceOperationImpl implements OperationType {
-    private final FruitTransactionDao dao;
-
-    public BalanceOperationImpl(FruitTransactionDao dao) {
-        this.dao = dao;
-    }
 
     @Override
     public void handle(String line) {
@@ -18,7 +13,7 @@ public class BalanceOperationImpl implements OperationType {
         String fruitName = splitLine[1];
         String fruitQuantity = splitLine[2];
 
-        if (dao.checkExisting(fruitName)) {
+        if (Storage.storage.containsKey(fruitName)) {
             throw new RuntimeException("fruit already exist");
         }
 
@@ -26,6 +21,6 @@ public class BalanceOperationImpl implements OperationType {
         fruitTransaction.setFruit(fruitName);
         fruitTransaction.setQuantity(Integer.parseInt(fruitQuantity));
 
-        dao.add(fruitName, fruitTransaction);
+        Storage.storage.put(fruitName, fruitTransaction);
     }
 }

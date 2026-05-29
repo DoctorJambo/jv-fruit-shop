@@ -1,7 +1,5 @@
 package core.basesyntax.service;
 
-import core.basesyntax.dao.FruitTransactionDao;
-import core.basesyntax.dao.FruitTransactionDaoImpl;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.converting.DataConverter;
 import core.basesyntax.service.converting.DataConverterImpl;
@@ -15,7 +13,6 @@ import java.util.Map;
 
 public class ShopServiceImpl implements ShopService {
     private final OperationStrategy strategy;
-    private final FruitTransactionDao dao;
     private String inputDataFileName;
     private String reportFileName;
     private DataConverter converter;
@@ -24,7 +21,6 @@ public class ShopServiceImpl implements ShopService {
     public ShopServiceImpl(Map<FruitTransaction.Operation, OperationType> map,
                            String inputDataFileName) {
         this.strategy = new OperationStrategyImpl(map);
-        this.dao = new FruitTransactionDaoImpl();
         this.inputDataFileName = inputDataFileName;
         this.converter = new DataConverterImpl();
         this.reportGenerator = new ReportGeneratorImpl();
