@@ -14,16 +14,16 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Storage storage = new Storage(); // один раз!
+        Storage storage = new Storage();
 
-        Map<FruitTransaction.Operation, OperationType> operationHandlers = new HashMap<>();
-        operationHandlers.put(FruitTransaction.Operation.BALANCE,
+        Map<String, OperationType> operationHandlers = new HashMap<>();
+        operationHandlers.put(FruitTransaction.Operation.BALANCE.getCode(),
                 new BalanceOperationImpl(storage));
-        operationHandlers.put(FruitTransaction.Operation.PURCHASE,
+        operationHandlers.put(FruitTransaction.Operation.PURCHASE.getCode(),
                 new PurchaseOperationImpl(storage));
-        operationHandlers.put(FruitTransaction.Operation.RETURN,
+        operationHandlers.put(FruitTransaction.Operation.RETURN.getCode(),
                 new ReturnOperationImpl(storage));
-        operationHandlers.put(FruitTransaction.Operation.SUPPLY,
+        operationHandlers.put(FruitTransaction.Operation.SUPPLY.getCode(),
                 new SupplyOperationImpl(storage));
 
         ShopService service = new ShopServiceImpl(operationHandlers,
