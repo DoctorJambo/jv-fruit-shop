@@ -27,7 +27,6 @@ public class PurchaseOperationImpl implements OperationType {
             int fruitTransactionQuantity = fruitTransaction.getQuantity();
             int remainingQuantity = fruitTransactionQuantity - Integer.parseInt(purchaseQuantity);
             fruitTransaction.setQuantity(remainingQuantity);
-            fruitTransaction.setBoughtStatus(true);
         } else {
             throw new RuntimeException("there is no value for this key");
         }

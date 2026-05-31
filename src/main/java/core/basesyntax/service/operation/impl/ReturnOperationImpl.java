@@ -23,12 +23,9 @@ public class ReturnOperationImpl implements OperationType {
 
         if (storage.containsValue(fruitName)) {
             FruitTransaction fruitTransaction = storage.get(fruitName);
-
-            if (fruitTransaction.wasBought()) {
-                int fruitTransactionQuantity = fruitTransaction.getQuantity();
-                int totalQuantity = Integer.parseInt(returnedQuantity) + fruitTransactionQuantity;
-                fruitTransaction.setQuantity(totalQuantity);
-            }
+            int fruitTransactionQuantity = fruitTransaction.getQuantity();
+            int totalQuantity = Integer.parseInt(returnedQuantity) + fruitTransactionQuantity;
+            fruitTransaction.setQuantity(totalQuantity);
         } else {
             throw new RuntimeException("there is no value for this key");
         }

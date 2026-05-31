@@ -29,7 +29,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public void reportMaker() {
+    public void createReport() {
         List<String> linesOfData = converter.getInfoFromFile(inputDataFileName);
 
         String purchaseCode = FruitTransaction.Operation.PURCHASE.getCode();

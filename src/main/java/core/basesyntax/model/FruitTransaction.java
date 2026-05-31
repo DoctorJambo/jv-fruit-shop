@@ -3,7 +3,6 @@ package core.basesyntax.model;
 public class FruitTransaction {
     private String fruit;
     private int quantity;
-    private boolean wasBought;
 
     public String getFruit() {
         return fruit;
@@ -19,14 +18,6 @@ public class FruitTransaction {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public boolean wasBought() {
-        return wasBought;
-    }
-
-    public void setBoughtStatus(boolean wasBought) {
-        this.wasBought = wasBought;
     }
 
     public enum Operation {

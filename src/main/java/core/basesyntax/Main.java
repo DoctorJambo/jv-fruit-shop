@@ -28,6 +28,6 @@ public class Main {
 
         ShopService service = new ShopServiceImpl(operationHandlers,
                 "src/main/resources/inputData.csv", storage);
-        service.reportMaker();
+        service.createReport();
     }
 }
