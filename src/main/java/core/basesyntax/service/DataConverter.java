@@ -3,6 +3,6 @@ package core.basesyntax.service;
 import core.basesyntax.model.FruitTransaction;
 import java.util.List;
 
-public interface ShopService {
-    void process(List<FruitTransaction> transactions);
+public interface DataConverter {
+    List<FruitTransaction> convertToTransaction(List<String> inputReport);
 }

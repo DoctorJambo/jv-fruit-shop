@@ -1,25 +1,20 @@
 package core.basesyntax.db;
 
-import core.basesyntax.model.FruitTransaction;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Storage {
-    private final Map<String, FruitTransaction> storage = new HashMap<>();
+    private final Map<String, Integer> storage = new HashMap<>();
 
-    public void add(String fruitName, FruitTransaction value) {
-        storage.put(fruitName, value);
-    }
-
-    public FruitTransaction get(String fruitName) {
+    public Integer get(String fruitName) {
         return storage.get(fruitName);
     }
 
-    public boolean containsValue(String fruitName) {
-        return storage.containsKey(fruitName);
+    public void put(String fruitName, Integer quantity) {
+        storage.put(fruitName, quantity);
     }
 
-    public Map<String, FruitTransaction> getAll() {
+    public Map<String, Integer> getAll() {
         return storage;
     }
 }

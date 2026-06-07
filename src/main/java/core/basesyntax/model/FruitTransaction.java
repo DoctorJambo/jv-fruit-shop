@@ -3,6 +3,7 @@ package core.basesyntax.model;
 public class FruitTransaction {
     private String fruit;
     private int quantity;
+    private Operation operation;
 
     public String getFruit() {
         return fruit;
@@ -18,6 +19,21 @@ public class FruitTransaction {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Operation getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String code) {
+        for (Operation operation : Operation.values()) {
+            if (operation.getCode().equals(code)) {
+                this.operation = operation;
+                return;
+            }
+        }
+
+        throw new RuntimeException("operation don't exist for this code");
     }
 
     public enum Operation {
